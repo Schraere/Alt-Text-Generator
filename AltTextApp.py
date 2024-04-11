@@ -9,7 +9,7 @@ st.set_page_config(
     layout="centered"
 )
 
-st.header("Upload one image at a time with maximum file size of 200MB.", divider='blue')
+st.header("Alternative Text Generator", divider='blue')
 st.markdown("This prototype utilizes the free version of Google Gemini and should not be used with sensitive data.")
 file = st.file_uploader("Upload the photo or image you want the AI model to use to generate alt-text and description.", type=["jpg", "jpeg", "png"])
 img, result = st.columns(2)
