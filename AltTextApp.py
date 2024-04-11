@@ -22,7 +22,6 @@ on = st.toggle('Add context for the image.')
 if on:
    user_text = st.text_input("Write context description")
 
-st.subheader("Suggested alt-text and caption)
 with result:
     if file is not None:
         model = genai.GenerativeModel('gemini-pro-vision')
