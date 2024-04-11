@@ -17,11 +17,15 @@ with img:
      if file is not None:
           image = PIL.Image.open(file)
           st.image(file,width=350)
-user_text = st.text_input("Write context description")
 with result:
     if file is not None:
         model = genai.GenerativeModel('gemini-pro-vision')
-        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications. Suggest a short description for a caption.", image, user_input], stream=True)
+        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications. Suggest a short description for a caption.", image], stream=True)
         response.resolve()
         for candidate in response.candidates:
             st.write(part.text for part in candidate.content.parts)
+user_text = st.text_input("Write context description")
+    if user_text is not None:
+        model = genai.GenerativeModel('gemini-pro-vision')
+        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications. Suggest a short description for a caption.", image], stream=True)
+        response.resolve()
