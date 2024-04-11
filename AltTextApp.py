@@ -25,7 +25,3 @@ with result:
         for candidate in response.candidates:
             st.write(part.text for part in candidate.content.parts)
 user_text = st.text_input("Write context description")
-if user_text is not None:
-        model = genai.GenerativeModel('gemini-pro-vision')
-        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications. Suggest a short description for a caption.", user_text], stream=True)
-        response.resolve()
