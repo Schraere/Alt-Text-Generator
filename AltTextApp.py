@@ -9,9 +9,9 @@ st.set_page_config(
     layout="centered"
 )
 
-st.header("Upload one image at a time, 200MB max.", divider='rainbow')
-
-file = st.file_uploader("Upload the photo or image you want the AI model to use to generate alt-text and description.", type=["jpg", "jpeg", "png"])
+st.header("Upload images with maximum file size of 200MB.", divider='blue')
+st.markdown("This prototype utilizes the free version of Google Gemini and should not be used with sensitive data.")
+file = st.file_uploader("Upload the photo or image you want the AI model to use to generate alt-text and description.", type=["jpg", "jpeg", "png"], accept_multiple_files=True)
 img, result = st.columns(2)
 
 with img:
@@ -22,7 +22,7 @@ with img:
 with result:
     if file is not None:
         model = genai.GenerativeModel('gemini-pro-vision')
-        response = model.generate_content(["Describe all content in the image, and generate a description suitable to be used for alt-text.", image], stream=True)
+        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications.", image], stream=True)
         response.resolve()
         for candidate in response.candidates:
             st.write(part.text for part in candidate.content.parts)
