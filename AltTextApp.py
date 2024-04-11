@@ -11,7 +11,7 @@ st.set_page_config(
 
 st.header("Alternative Text Generator", divider='blue')
 st.markdown("This prototype utilizes the free version of Google Gemini and should not be used with sensitive data.")
-file = st.file_uploader("Upload the photo or image to generate alt-text and caption. Use the toggle to provide additional context and regenerate the alt-text and caption", type=["jpg", "jpeg", "png"])
+file = st.file_uploader("Upload the photo or image to generate alt-text and caption. If needed, use the toggle to provide additional context and regenerate the alt-text and caption", type=["jpg", "jpeg", "png"])
 img, result = st.columns(2)
 with img:
      if file is not None:
