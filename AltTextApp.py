@@ -18,14 +18,20 @@ with img:
           image = PIL.Image.open(file)
           st.image(file,width=350)
 on = st.toggle('Add context for the image.')
-if on:
-   user_text = st.text_input("Write context description")
-
 with result:
-    if file is not None:
+    if file is not None and if off:
         model = genai.GenerativeModel('gemini-pro-vision')
-        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications. Suggest a short description for a caption.", image, user_text], stream=True)
+        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications. Suggest a short description for a caption.", image], stream=True)
         response.resolve()
         for candidate in response.candidates:
             st.write(part.text for part in candidate.content.parts)
         response.prompt_feedback
+    if file is not None and if on: 
+         model = genai.GenerativeModel('gemini-pro-vision')
+        response = model.generate_content(["Create alt-text for each image that meets WCAG 2.2 specifications. Suggest a short description for a caption.", image, user_input], stream=True)
+        response.resolve()
+        for candidate in response.candidates:
+            st.write(part.text for part in candidate.content.parts)
+        response.prompt_feedback
+if on:
+   user_text = st.text_input("Write context description")
